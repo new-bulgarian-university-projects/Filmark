@@ -2,30 +2,29 @@
 <instant-run
     abi="x86"
     api-level="27"
-    build-mode="COLD"
+    build-mode="HOT_WARM"
     density="420dpi"
     format="10"
-    ir-eligibility="COMPATIBLE"
     plugin-version="3.3.0"
-    timestamp="1547848858583"
+    timestamp="1547849479862"
     token="8603195548154870212"
-    verifier="COLD_SWAP_REQUESTED" >
+    verifier="COMPATIBLE" >
 
     <task
         name="javac"
-        duration="284" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="103" />
+        duration="0" />
     <task
         name="verifier"
-        duration="19" />
+        duration="0" />
 
     <artifact
-        location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+        location="D:\Android\Filmark\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
         type="SPLIT" />
 
     <build
@@ -79,9 +78,6 @@
         timestamp="1547847073948"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="D:\Android\Filmark\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
-            type="SPLIT" />
-        <artifact
             location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
@@ -106,10 +102,18 @@
     <build
         build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1547848858583"
+        timestamp="1547849239658"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="HOT_WARM"
+        timestamp="1547849479862"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="D:\Android\Filmark\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
     </build>
 

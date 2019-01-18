@@ -2,6 +2,6 @@
     <string name="app_name">Filmark</string>
     <string name="action_settings">Settings</string>
     <string name="omdb_api_url"><![CDATA[http://www.omdbapi.com/?s=%s&apikey=5d412163]]></string>
-    <string name="title_activity_movie_details">MovieDetailsActivity</string>
+    <string name="title_activity_movie_details">Movie Detail</string>
     <string name="details_imdb_url"><![CDATA[http://www.omdbapi.com/?i=%s&apikey=5d412163]]></string>
 </resources>

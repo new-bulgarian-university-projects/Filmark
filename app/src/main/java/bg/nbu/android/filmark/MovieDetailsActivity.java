@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,17 +73,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
             String json = new DataManager().execute(url).get();
             JSONObject jsonObject = new JSONObject(json);
 
-
             asssignMovieDetails(jsonObject);
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
         catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
 
     private void asssignMovieDetails(JSONObject jsonObject) throws JSONException {
@@ -93,6 +90,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         new DownloadImageTask((ImageView) findViewById(R.id.movie_poster))
                                             .execute(posterUrl);
+
+        ((TextView) findViewById(R.id.movie_title)).setText(title);
+        ((TextView) findViewById(R.id.movie_year)).setText(year);
+        ((TextView) findViewById(R.id.movie_plot)).setText(plot);
 
     }
 
