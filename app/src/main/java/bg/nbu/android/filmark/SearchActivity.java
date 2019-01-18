@@ -1,5 +1,4 @@
 package bg.nbu.android.filmark;
-import android.os.AsyncTask;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,13 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class SearchActivity extends AppCompatActivity {
@@ -43,15 +36,13 @@ public class SearchActivity extends AppCompatActivity {
         String searchTitle = searchFiled.getText().toString();
         if (searchTitle != null) {
 //            new BackgroundTask().execute(searchTitle);
-            String responseMsg = test(searchTitle);
-            test2(responseMsg);
+            String responseMsg = getImdbData(searchTitle);
+            fillMoviesList(responseMsg);
 
         }
 
-
-
     }
-    public String test (String title) throws JSONException, ExecutionException, InterruptedException {
+    public String getImdbData(String title) throws JSONException, ExecutionException, InterruptedException {
         String parsedUrl = String.format(JSON_URL, title);
         String json = new DataManager().execute(parsedUrl).get();
         JSONObject jsonObject = new JSONObject(json);
@@ -77,7 +68,7 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    public void test2(String responseMessage){
+    public void fillMoviesList(String responseMessage){
         TextView statusMessage = (TextView) findViewById(R.id.error_message);
         if(moviesSearchResult.size() > 0) {
             responseMessage = "Found " + responseMessage + " results !";
