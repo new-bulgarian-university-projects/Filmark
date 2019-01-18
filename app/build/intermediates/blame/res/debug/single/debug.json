@@ -460,6 +460,10 @@
         "source": "C:\\Users\\nikol\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\73d500ea75287daaa8ac79d30962a2ac\\res\\animator-v21\\design_appbar_state_list_animator.xml"
     },
     {
+        "merged": "D:\\Android\\Filmark\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_movie_details.xml.flat",
+        "source": "D:\\Android\\Filmark\\app\\src\\main\\res\\layout\\content_movie_details.xml"
+    },
+    {
         "merged": "D:\\Android\\Filmark\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu_search.xml.flat",
         "source": "D:\\Android\\Filmark\\app\\src\\main\\res\\menu\\menu_search.xml"
     },
@@ -522,6 +526,10 @@
     {
         "merged": "D:\\Android\\Filmark\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "C:\\Users\\nikol\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\39b8b3067bdb72821061767dd88c0049\\res\\drawable-mdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
+    },
+    {
+        "merged": "D:\\Android\\Filmark\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_movie_details.xml.flat",
+        "source": "D:\\Android\\Filmark\\app\\src\\main\\res\\layout\\activity_movie_details.xml"
     },
     {
         "merged": "D:\\Android\\Filmark\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_btn_colored_material.xml.flat",

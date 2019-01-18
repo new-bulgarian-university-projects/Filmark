@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -25,92 +26,81 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class SearchActivity extends AppCompatActivity {
 
     public ArrayAdapter<Movie> adapterMovies;
     private ArrayList<Movie> moviesSearchResult;
+    String JSON_URL;
     String JSON_STRING;
 
-    public void getJSON(){
-
-    }
-
-    public void searchOmdb(View view){
+    public void searchOmdb(View view) throws InterruptedException, ExecutionException, JSONException {
         // get text from button
+        JSON_URL = getString(R.string.omdb_api_url);
+
         TextView searchFiled = (TextView) findViewById(R.id.search_result);
         String searchTitle = searchFiled.getText().toString();
-        if(searchTitle != null)
-            new BackgroundTask().execute(searchTitle);
+        if (searchTitle != null) {
+//            new BackgroundTask().execute(searchTitle);
+            String responseMsg = test(searchTitle);
+            test2(responseMsg);
+
+        }
+
+
+
+    }
+    public String test (String title) throws JSONException, ExecutionException, InterruptedException {
+        String parsedUrl = String.format(JSON_URL, title);
+        String json = new DataManager().execute(parsedUrl).get();
+        JSONObject jsonObject = new JSONObject(json);
+
+        moviesSearchResult = new ArrayList<Movie>() {
+        };
+        if (!jsonObject.getBoolean("Response")) {
+            return jsonObject.getString("Error");
+        }
+        JSONArray moviesJsonList = jsonObject.getJSONArray("Search");
+
+        for (int i = 0; i < moviesJsonList.length(); i++) {
+            JSONObject movieJson = (JSONObject) moviesJsonList.get(i);
+            Movie movie = new Movie(
+                    movieJson.getString("imdbID"),
+                    movieJson.getString("Title"),
+                    movieJson.getString("Year"));
+
+            moviesSearchResult.add(movie);
+        }
+
+        return jsonObject.getJSONArray("Search").length() + "";
+
     }
 
-    private class BackgroundTask extends AsyncTask<String, Void, String> {
+    public void test2(String responseMessage){
+        TextView statusMessage = (TextView) findViewById(R.id.error_message);
+        if(moviesSearchResult.size() > 0) {
+            responseMessage = "Found " + responseMessage + " results !";
+        }
+        statusMessage.setText(responseMessage);
 
-        String JSON_URL = getString(R.string.omdb_api_url);
+        final ListView listMovies = (ListView) findViewById(R.id.result_list);
 
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                StringBuilder JSON_DATA = new StringBuilder();
-                String parsedUrl = String.format(JSON_URL, params[0]);
-                URL url = new URL(parsedUrl);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream in = httpURLConnection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-                String json = reader.readLine();
-                JSONObject jsonObject = new JSONObject(json);
+        adapterMovies  = new ArrayAdapter<Movie>(SearchActivity.this , android.R.layout.simple_list_item_1, moviesSearchResult);
 
-                moviesSearchResult = new ArrayList<Movie>(){};
-                if(!jsonObject.getBoolean("Response")){
-                    return jsonObject.getString("Error");
-                }
-                JSONArray moviesJsonList = jsonObject.getJSONArray("Search");
+        listMovies.setAdapter(adapterMovies);
+        listMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // will see what will do
+                String movieId = moviesSearchResult.get(position).getId().toString();
 
-                for(int i=0; i < moviesJsonList.length(); i++){
-                    JSONObject movieJson = (JSONObject) moviesJsonList.get(i);
-                    Movie movie = new Movie(
-                            movieJson.getString("Title"),
-                            movieJson.getString("Year"));
-
-                    moviesSearchResult.add(movie);
-                }
-
-                return jsonObject.getJSONArray("Search").length() + "";
-            } catch (Exception e) {
-                e.printStackTrace();
+                Intent intent = new Intent(SearchActivity.this, MovieDetailsActivity.class);
+                intent.putExtra(MovieDetailsActivity.MOVIE_ID_PROP, movieId);
+                startActivity(intent);
             }
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected void onPostExecute(String responseMessage) {
-
-            TextView statusMessage = (TextView) findViewById(R.id.error_message);
-            if(moviesSearchResult.size() > 0) {
-                responseMessage = "Found " + responseMessage + " results !";
-            }
-            statusMessage.setText(responseMessage);
-
-            final ListView listMovies = (ListView) findViewById(R.id.result_list);
-
-            adapterMovies  = new ArrayAdapter<Movie>(SearchActivity.this , android.R.layout.simple_list_item_1, moviesSearchResult);
-
-            listMovies.setAdapter(adapterMovies);
-            listMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    // will see what will do
-                }
-            });
-        }
+        });
     }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,10 +116,7 @@ public class SearchActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-            getJSON();
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
