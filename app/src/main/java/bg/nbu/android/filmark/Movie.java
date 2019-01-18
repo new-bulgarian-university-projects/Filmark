@@ -2,10 +2,10 @@ package bg.nbu.android.filmark;
 
 public class Movie {
     private String title;
-    private Integer year;
+    private String year;
     private Double rating;
 
-    public Movie(String title, Integer year){
+    public Movie(String title, String year){
         this.title = title;
         this.year = year;
     }
@@ -16,9 +16,9 @@ public class Movie {
             this.title = title;
     }
 
-    public Integer getYear() {return this.year; }
-    public void setYear(Integer year){
-        if(year > 0){
+    public String getYear() {return this.year; }
+    public void setYear(String year){
+        if(year != null){
             this.year = year;
         }
     }

@@ -1091,6 +1091,7 @@ id edit_query
 id end
 id enterAlways
 id enterAlwaysCollapsed
+id error_message
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -1203,7 +1204,6 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
-id textView2
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1357,6 +1357,7 @@ string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string hide_bottom_view_on_scroll_behavior
 string mtrl_chip_close_icon_content_description
+string omdb_api_url
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
