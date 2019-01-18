@@ -1,0 +1,4 @@
+#Fri Jan 18 19:58:23 GMT+02:00 2019
+base.0=D\:\\Android\\Filmark\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\7
+path.0=classes.dex
+renamed.0=classes.dex
