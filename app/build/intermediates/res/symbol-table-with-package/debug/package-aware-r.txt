@@ -1059,6 +1059,8 @@ id auto
 id barrier
 id beginning
 id blocking
+id bookmark_activity_title
+id bookmarked_movies_list
 id bottom
 id button
 id buttonPanel
@@ -1281,6 +1283,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_bookmark_list
 layout activity_movie_details
 layout activity_search
 layout content_movie_details
