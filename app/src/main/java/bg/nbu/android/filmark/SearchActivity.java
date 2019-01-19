@@ -27,8 +27,24 @@ public class SearchActivity extends AppCompatActivity {
     private ArrayList<Movie> moviesSearchResult;
     private String JSON_URL;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchActivity.this, BookmarkListActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     public void searchOmdb(View view) throws InterruptedException, ExecutionException, JSONException {
-        // get text from button
         JSON_URL = getString(R.string.omdb_api_url);
 
         TextView searchFiled = (TextView) findViewById(R.id.search_result);
@@ -36,17 +52,16 @@ public class SearchActivity extends AppCompatActivity {
         if (searchTitle != null) {
             String responseMsg = getImdbData(searchTitle);
             fillMoviesList(responseMsg);
-
         }
-
     }
+
     public String getImdbData(String title) throws JSONException, ExecutionException, InterruptedException {
         String parsedUrl = String.format(JSON_URL, title);
         String json = new DataManager().execute(parsedUrl).get();
         JSONObject jsonObject = new JSONObject(json);
 
-        moviesSearchResult = new ArrayList<Movie>() {
-        };
+        moviesSearchResult = new ArrayList<Movie>() {};
+
         if (!jsonObject.getBoolean("Response")) {
             return jsonObject.getString("Error");
         }
@@ -63,7 +78,6 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         return jsonObject.getJSONArray("Search").length() + "";
-
     }
 
     public void fillMoviesList(String responseMessage){
@@ -86,22 +100,6 @@ public class SearchActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(SearchActivity.this, MovieDetailsActivity.class);
                 intent.putExtra(MovieDetailsActivity.MOVIE_ID_PROP, movieId);
-                startActivity(intent);
-            }
-        });
-    }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SearchActivity.this, BookmarkListActivity.class);
                 startActivity(intent);
             }
         });

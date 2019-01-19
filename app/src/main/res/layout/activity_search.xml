@@ -28,9 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_action_bookmark"
         app:backgroundTint="@color/colorAccent"
         app:fabSize="auto"
-        app:rippleColor="@color/your_color"
-        app:srcCompat="@android:drawable/ic_input_get" />
+        app:rippleColor="@color/your_color" />
 
 </android.support.design.widget.CoordinatorLayout>

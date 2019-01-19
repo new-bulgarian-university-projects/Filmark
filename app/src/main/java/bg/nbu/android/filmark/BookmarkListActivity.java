@@ -42,6 +42,5 @@ public class BookmarkListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }

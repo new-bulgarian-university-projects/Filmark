@@ -15,6 +15,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="enter a movie"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

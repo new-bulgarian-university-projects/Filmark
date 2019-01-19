@@ -22,35 +22,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class MovieDetailsActivity extends AppCompatActivity {
-
-    public final static String MOVIE_ID_PROP = "imdbID";
     public Movie selectedMovie;
     private DatabaseHelper myDb;
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
+    public final static String MOVIE_ID_PROP = "imdbID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +74,31 @@ public class MovieDetailsActivity extends AppCompatActivity {
         }
     }
 
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+
+        private ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
+
     private void asssignMovieDetails(JSONObject jsonObject) throws JSONException {
         String id = jsonObject.getString("imdbID").toString();
         String title = jsonObject.getString("Title").toString();
@@ -114,7 +114,5 @@ public class MovieDetailsActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.movie_title)).setText(title);
         ((TextView) findViewById(R.id.movie_year)).setText(year);
         ((TextView) findViewById(R.id.movie_plot)).setText(plot);
-
     }
-
 }
