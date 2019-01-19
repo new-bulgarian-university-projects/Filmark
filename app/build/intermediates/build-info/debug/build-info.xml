@@ -2,13 +2,13 @@
 <instant-run
     abi="x86"
     api-level="27"
-    build-mode="HOT_WARM"
+    build-mode="COLD"
     density="420dpi"
     format="10"
     plugin-version="3.3.0"
-    timestamp="1547849479862"
+    timestamp="1547892286296"
     token="8603195548154870212"
-    verifier="COMPATIBLE" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
@@ -23,32 +23,30 @@
         name="verifier"
         duration="0" />
 
-    <artifact
-        location="D:\Android\Filmark\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
-        type="SPLIT" />
-
     <build
         build-mode="FULL"
-        ir-eligibility="CLASS_ADDED"
-        timestamp="1547845871810"
-        verifier="COLD_SWAP_REQUESTED" >
+        timestamp="1547887943555"
+        verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="D:\Android\Filmark\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
+            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
             location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
             type="SPLIT" />
         <artifact
             location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
@@ -57,43 +55,13 @@
             location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Android\Filmark\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
-            type="SPLIT_MAIN" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="CLASS_ADDED"
-        timestamp="1547847073948"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-        <artifact
             location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
             location="D:\Android\Filmark\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
@@ -102,19 +70,15 @@
     <build
         build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1547849239658"
+        timestamp="1547892227012"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="D:\Android\Filmark\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
     </build>
     <build
-        build-mode="HOT_WARM"
-        timestamp="1547849479862"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="D:\Android\Filmark\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
-            type="SPLIT" />
-    </build>
+        build-mode="COLD"
+        timestamp="1547892286296"
+        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

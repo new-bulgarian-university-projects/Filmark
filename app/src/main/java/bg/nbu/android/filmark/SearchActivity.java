@@ -23,10 +23,9 @@ import java.util.concurrent.ExecutionException;
 
 public class SearchActivity extends AppCompatActivity {
 
-    public ArrayAdapter<Movie> adapterMovies;
+    private ArrayAdapter<Movie> adapterMovies;
     private ArrayList<Movie> moviesSearchResult;
-    String JSON_URL;
-    String JSON_STRING;
+    private String JSON_URL;
 
     public void searchOmdb(View view) throws InterruptedException, ExecutionException, JSONException {
         // get text from button
@@ -35,7 +34,6 @@ public class SearchActivity extends AppCompatActivity {
         TextView searchFiled = (TextView) findViewById(R.id.search_result);
         String searchTitle = searchFiled.getText().toString();
         if (searchTitle != null) {
-//            new BackgroundTask().execute(searchTitle);
             String responseMsg = getImdbData(searchTitle);
             fillMoviesList(responseMsg);
 

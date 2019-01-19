@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +24,8 @@ import java.io.InputStream;
 public class MovieDetailsActivity extends AppCompatActivity {
 
     public final static String MOVIE_ID_PROP = "imdbID";
+    public Movie selectedMovie;
+    private DatabaseHelper myDb;
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
         ImageView bmImage;
@@ -55,13 +58,27 @@ public class MovieDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_details);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        this.myDb = new DatabaseHelper(this);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                // save to db
+                boolean savedSuccessfully = false;
+                String toastMessage = "";
+
+                if(selectedMovie != null) {
+                    savedSuccessfully = myDb.insertData(selectedMovie);
+                }
+                if(savedSuccessfully){
+                    toastMessage = selectedMovie.getTitle() + " was added to your list !";
+                }else {
+                    toastMessage = "Not added, maybe already exists or some error occurred !";
+                }
+                Toast.makeText(MovieDetailsActivity.this,
+                        toastMessage,
+                        Toast.LENGTH_LONG).show();
             }
         });
 
@@ -83,6 +100,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
     private void asssignMovieDetails(JSONObject jsonObject) throws JSONException {
+        String id = jsonObject.getString("imdbID").toString();
         String title = jsonObject.getString("Title").toString();
         String year = jsonObject.getString("Year").toString();
         String plot = jsonObject.getString("Plot").toString();
@@ -90,6 +108,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         new DownloadImageTask((ImageView) findViewById(R.id.movie_poster))
                                             .execute(posterUrl);
+
+        this.selectedMovie = new Movie(id, title, year);
 
         ((TextView) findViewById(R.id.movie_title)).setText(title);
         ((TextView) findViewById(R.id.movie_year)).setText(year);
